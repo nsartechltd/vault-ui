@@ -37,18 +37,14 @@ class AddAccounts extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    console.log('ACCOUNTS ADD LOADED');
     const response = await fetch(`${vaultApiUrl}/providers`);
     const body = await response.json() as State;
-    console.log('BODY IS: ', body);
 
     this.setState({ providers: body.providers });
   }
 
   render() {
     const { providers } = this.state;
-
-    console.log('PROVIDERS', providers);
   
     return (
       <>
