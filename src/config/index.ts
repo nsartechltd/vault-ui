@@ -1,4 +1,4 @@
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.REACT_APP_ENVIRONMENT || 'development';
 
 const config: any = {
   development: {
