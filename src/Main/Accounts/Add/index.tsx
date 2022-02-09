@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import config from '../../../config';
 
+console.log('CONFIG LOADED IN ACCOUNTS ADD PAGE: ', config);
+
 type Provider = {
   provider_id: string;
   display_name: string;

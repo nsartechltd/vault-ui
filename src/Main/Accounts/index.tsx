@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import UserProvider from '../../Components/Cards/UserProvider';
 import config from '../../config';
+console.log('CONFIG LOADED IN ACCOUNTS HOME PAGE: ', config);
 
 const { vaultApi: { apiUrl: vaultApiUrl } } = config;
 
