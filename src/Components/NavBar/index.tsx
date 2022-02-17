@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import {
   NavLink,
 } from "react-router-dom";
 
-const NavBar = () => {
+type Props = {
+  user: any;
+  signOut: MouseEventHandler<HTMLButtonElement>;
+};
+
+const NavBar = (props: Props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -20,6 +25,8 @@ const NavBar = () => {
             <li className="nav-item">
               <div className="nav-link">
                 <NavLink to="/accounts">Accounts</NavLink>
+                <h1>Hello {props.user.attributes.name}</h1>
+                <button onClick={props.signOut}>Sign out</button>
               </div>
             </li>
           </ul>

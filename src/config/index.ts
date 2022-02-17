@@ -3,22 +3,30 @@ const env = process.env.REACT_APP_ENVIRONMENT || 'development';
 const config: any = {
   development: {
     vaultApi: {
-      apiUrl: 'https://vault-api-dev.nsar-tech.co.uk/api'
+      apiUrl: process.env.REACT_APP_VAULT_API_URL,
     },
     trueLayer: {
       apiUrl: 'https://auth.truelayer-sandbox.com',
       clientId: process.env.REACT_APP_TRUE_LAYER_CLIENT_ID,
-      redirectUri: 'https://vault-api-dev.nsar-tech.co.uk/api/authCallback'
+      redirectUri: `${process.env.REACT_APP_VAULT_API_URL}/authCallback`
+    },
+    cognito: {
+      userPoolId: process.env.REACT_APP_USER_POOL_ID,
+      userPoolClientId: process.env.REACT_APP_USER_POOL_CLIENT_ID,
     }
   },
   production: {
     vaultApi: {
-      apiUrl: 'http://localhost:3001/dev/api'
+      apiUrl: process.env.REACT_APP_VAULT_API_URL,
     },
     trueLayer: {
       apiUrl: 'https://auth.truelayer.com',
       clientId: process.env.REACT_APP_TRUE_LAYER_CLIENT_ID,
-      redirectUri: 'http://localhost:3001/dev/api/authCallback'
+      redirectUri: `${process.env.REACT_APP_VAULT_API_URL}/authCallback`
+    },
+    cognito: {
+      userPoolId: process.env.REACT_APP_USER_POOL_ID,
+      userPoolClientId: process.env.REACT_APP_USER_POOL_CLIENT_ID,
     }
   },
 };

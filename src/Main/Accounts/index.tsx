@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 import UserProvider from '../../Components/Cards/UserProvider';
 import config from '../../config';
-console.log('CONFIG LOADED IN ACCOUNTS HOME PAGE: ', config);
 
 const { vaultApi: { apiUrl: vaultApiUrl } } = config;
 
@@ -26,7 +25,9 @@ type State = {
   providers: UserProviderType[];
 };
 
-type Props = {};
+type Props = {
+  userId?: string;
+};
 
 class Accounts extends Component<Props, State> {
   constructor(props: Props) {
@@ -38,7 +39,8 @@ class Accounts extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const response = await fetch(`${vaultApiUrl}/user/1/providers`);
+    const { userId } = this.props;
+    const response = await fetch(`${vaultApiUrl}/user/${userId}/providers`);
     const body = await response.json() as State;
 
     this.setState({ providers: body.providers });
