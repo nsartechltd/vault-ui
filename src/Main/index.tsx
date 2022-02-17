@@ -4,28 +4,56 @@ import {
   Routes,
   BrowserRouter,
 } from "react-router-dom";
+import { Amplify } from 'aws-amplify';    
+import { Authenticator } from '@aws-amplify/ui-react';
 
 import Accounts from "./Accounts";
 import AddAccounts from "./Accounts/Add";
 import Home from './Home';
 import NavBar from "../Components/NavBar";
+import config from "../config";
+
+import '@aws-amplify/ui-react/styles.css';
+
+const { cognito: { userPoolId, userPoolClientId } } = config;
+
+Amplify.configure({
+  aws_project_region: "eu-west-2",
+  aws_cognito_region: "eu-west-2",
+  aws_user_pools_id: userPoolId,
+  aws_user_pools_web_client_id: userPoolClientId,
+});
+
+const components = {
+  Header() {
+    return (
+      <div style={{padding: 10, alignItems: "center", display: "flex", justifyContent: "center"}}>
+        <img src="/vault-logo.png" alt="Vault" width="220" height="100"/>
+      </div>
+    );
+  },
+};
  
 class Main extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <NavBar />
+      <Authenticator components={components} loginMechanisms={['email']} signUpAttributes={['name', 'picture']}>
+        {({ signOut, user }) => {          console.log("USER IS: ", user);
+          return (<BrowserRouter>
+            <div>
+              <NavBar user={user} signOut={signOut} />
 
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/accounts" element={<Accounts />} />
-              <Route path="/accounts/add" element={<AddAccounts />} />
-            </Routes>
-          </div>
-        </div>
-      </BrowserRouter>
+              <div className="content">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/accounts" element={<Accounts userId={user.username} />} />
+                  <Route path="/accounts/add" element={<AddAccounts />} />
+                </Routes>
+              </div>
+            </div>
+          </BrowserRouter>
+        )}}
+      </Authenticator>
     );
   }
 }
