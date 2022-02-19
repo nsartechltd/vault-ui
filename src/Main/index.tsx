@@ -49,7 +49,7 @@ class Main extends Component {
                   <Route path="/" element={<Home />} />
                   <Route path="/accounts" element={<Accounts userId={user.username} />} />
                   <Route path="/accounts/add" element={<AddAccounts />} />
-                  <Route path="/authCallback" element={<AuthCallback />} />
+                  <Route path="/authCallback" element={<AuthCallback userId={user.username} />} />
                 </Routes>
               </div>
             </div>

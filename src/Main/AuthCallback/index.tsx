@@ -6,14 +6,16 @@ import config from '../../config';
 const { vaultApi: { apiUrl: vaultApiUrl } } = config;
 
 type State = {};
-type Props = {};
+type Props = {
+  userId?: string;
+};
 
 class AuthCallback extends Component<Props, State> {
   async componentDidMount() {
     const { search } = window.location;
     const code = search.split('=')[1];
 
-    await fetch(`${vaultApiUrl}/authCallback?code=${code}`);
+    await fetch(`${vaultApiUrl}/authCallback?code=${code}&userId=${this.props.userId}`);
   }
 
   render() {
