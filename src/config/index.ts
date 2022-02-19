@@ -8,7 +8,7 @@ const config: any = {
     trueLayer: {
       apiUrl: 'https://auth.truelayer-sandbox.com',
       clientId: process.env.REACT_APP_TRUE_LAYER_CLIENT_ID,
-      redirectUri: `${process.env.REACT_APP_VAULT_API_URL}/authCallback`
+      redirectUri: `${process.env.REACT_APP_VAULT_URL}/authCallback`
     },
     cognito: {
       userPoolId: process.env.REACT_APP_USER_POOL_ID,
@@ -22,7 +22,7 @@ const config: any = {
     trueLayer: {
       apiUrl: 'https://auth.truelayer.com',
       clientId: process.env.REACT_APP_TRUE_LAYER_CLIENT_ID,
-      redirectUri: `${process.env.REACT_APP_VAULT_API_URL}/authCallback`
+      redirectUri: `${process.env.REACT_APP_VAULT_URL}/authCallback`
     },
     cognito: {
       userPoolId: process.env.REACT_APP_USER_POOL_ID,
