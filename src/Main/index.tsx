@@ -9,6 +9,7 @@ import { Authenticator } from '@aws-amplify/ui-react';
 
 import Accounts from "./Accounts";
 import AddAccounts from "./Accounts/Add";
+import AuthCallback from "./AuthCallback";
 import Home from './Home';
 import NavBar from "../Components/NavBar";
 import config from "../config";
@@ -38,8 +39,8 @@ class Main extends Component {
   render() {
     return (
       <Authenticator components={components} loginMechanisms={['email']} signUpAttributes={['name', 'picture']}>
-        {({ signOut, user }) => {          console.log("USER IS: ", user);
-          return (<BrowserRouter>
+        {({ signOut, user }) => (
+          <BrowserRouter>
             <div>
               <NavBar user={user} signOut={signOut} />
 
@@ -48,11 +49,12 @@ class Main extends Component {
                   <Route path="/" element={<Home />} />
                   <Route path="/accounts" element={<Accounts userId={user.username} />} />
                   <Route path="/accounts/add" element={<AddAccounts />} />
+                  <Route path="/authCallback" element={<AuthCallback />} />
                 </Routes>
               </div>
             </div>
           </BrowserRouter>
-        )}}
+        )}
       </Authenticator>
     );
   }
