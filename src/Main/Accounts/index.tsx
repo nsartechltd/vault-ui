@@ -64,7 +64,7 @@ class Accounts extends Component<Props, State> {
         <div className='row'>
           {providers.map((provider: UserProviderType, index: number) =>
             <div key={index} className='col'>
-              <UserProvider name={provider.Provider.name} logo={provider.Provider.logoUrl}/>
+              <UserProvider id={provider.Provider.id} name={provider.Provider.name} logo={provider.Provider.logoUrl}/>
             </div>
           )}
         </div>

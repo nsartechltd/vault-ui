@@ -9,6 +9,8 @@ import { Authenticator } from '@aws-amplify/ui-react';
 
 import Accounts from "./Accounts";
 import AddAccounts from "./Accounts/Add";
+import ViewAccounts from "./Accounts/View";
+import AccountTransactions from "./Accounts/Transactions";
 import AuthCallback from "./AuthCallback";
 import Home from './Home';
 import NavBar from "../Components/NavBar";
@@ -49,6 +51,8 @@ class Main extends Component {
                   <Route path="/" element={<Home />} />
                   <Route path="/accounts" element={<Accounts userId={user.username} />} />
                   <Route path="/accounts/add" element={<AddAccounts />} />
+                  <Route path="/accounts/view" element={<ViewAccounts userId={user.username} />} />
+                  <Route path="/accounts/view/:providerId/transactions" element={<AccountTransactions userId={user.username} />} />
                   <Route path="/authCallback" element={<AuthCallback userId={user.username} />} />
                 </Routes>
               </div>
