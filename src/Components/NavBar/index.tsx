@@ -25,11 +25,13 @@ const NavBar = (props: Props) => {
             <li className="nav-item">
               <div className="nav-link">
                 <NavLink to="/accounts">Accounts</NavLink>
-                <h1>Hello {props.user.attributes.name}</h1>
-                <button onClick={props.signOut}>Sign out</button>
               </div>
             </li>
           </ul>
+          <div className="d-flex justify-content-center align-items-center justify-content-evenly">
+            <div className="p-2 justify-content-center align-items-center justify-content-evenly"><p className="justify-content-center align-items-center">Hello, {props.user.attributes.name}</p></div>
+            <div className="p-2"><button className="btn btn-secondary" onClick={props.signOut}>Sign out</button></div>
+          </div>
         </div>
       </div>
     </nav>
