@@ -4,11 +4,21 @@ import AccountCard from '../../../Components/Cards/Account';
 import WithRouter from '../../../Components/WithRouter';
 import config from '../../../config';
 
-const { vaultApi: { apiUrl: vaultApiUrl } } = config;
+const {
+  vaultApi: { apiUrl: vaultApiUrl },
+} = config;
+
+type Router = {
+  location: {
+    state: {
+      providerId: number;
+    };
+  };
+};
 
 type Props = {
   userId?: string;
-  router?: any;
+  router?: Router | undefined;
 };
 
 type Account = {
@@ -25,11 +35,11 @@ type Account = {
   };
   provider: {
     provider_id: string;
-  }
+  };
 };
 
 type State = {
-  id: number | null,
+  id: number | null;
   accounts: Account[];
 };
 
@@ -40,15 +50,17 @@ class ViewAccounts extends Component<Props, State> {
     this.state = {
       id: null,
       accounts: [],
-    }
+    };
   }
 
   async componentDidMount() {
     const { userId, router } = this.props;
 
-    const providerId = router.location.state.providerId;
+    const providerId = router?.location.state.providerId;
 
-    const response = await fetch(`${vaultApiUrl}/user/${userId}/provider/${providerId}/accounts`);
+    const response = await fetch(
+      `${vaultApiUrl}/user/${userId}/provider/${providerId}/accounts`
+    );
     const body = await response.json();
 
     this.setState({ accounts: body.accounts });
@@ -56,22 +68,22 @@ class ViewAccounts extends Component<Props, State> {
 
   render() {
     const { accounts } = this.state;
-    console.log("ACCOUNTS: ", accounts);
     const { userId, router } = this.props;
 
     return (
       <>
-        {accounts.map((account) =>
+        {accounts.map((account, index) => (
           <AccountCard
+            key={index}
             displayName={account.display_name}
             accountType={account.account_type}
             updateTimestamp={account.update_timestamp}
             accountId={account.account_id}
             userId={userId}
-            providerId={router.location.state.providerId}
+            providerId={router?.location.state.providerId}
             trueLayerProviderId={account.provider.provider_id}
           />
-        )}
+        ))}
       </>
     );
   }

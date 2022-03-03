@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 import config from '../../../config';
 
-const { vaultApi: { apiUrl: vaultApiUrl } } = config;
+const {
+  vaultApi: { apiUrl: vaultApiUrl },
+} = config;
 
 type Props = {
   displayName: string;
@@ -27,7 +29,7 @@ class Account extends Component<Props, State> {
     super(props);
 
     this.state = {
-      currency: "",
+      currency: '',
       available: null,
       current: null,
       overdraft: null,
@@ -37,14 +39,23 @@ class Account extends Component<Props, State> {
   async componentDidMount() {
     const { accountId, userId, providerId } = this.props;
 
-    const response = await fetch(`${vaultApiUrl}/user/${userId}/provider/${providerId}/account/${accountId}/balance`);
+    const response = await fetch(
+      `${vaultApiUrl}/user/${userId}/provider/${providerId}/account/${accountId}/balance`
+    );
     const body = await response.json();
 
     this.setState({ ...body });
   }
 
   render() {
-    const { displayName, accountType, updateTimestamp, providerId, accountId, trueLayerProviderId } = this.props;
+    const {
+      displayName,
+      accountType,
+      updateTimestamp,
+      providerId,
+      accountId,
+      trueLayerProviderId,
+    } = this.props;
     const { currency, available, current, overdraft } = this.state;
 
     return (
@@ -56,8 +67,14 @@ class Account extends Component<Props, State> {
           <p className="card-text">Available: {available}</p>
           <p className="card-text">Current: {current}</p>
           <p className="card-text">Overdraft: {overdraft}</p>
-          <Link to={`/accounts/view/${trueLayerProviderId}/transactions`} state={{ providerId, accountId }} className="card-link">Transactions</Link>
-  
+          <Link
+            to={`/accounts/view/${trueLayerProviderId}/transactions`}
+            state={{ providerId, accountId }}
+            className="card-link"
+          >
+            Transactions
+          </Link>
+
           <div className="card-footer text-muted">{updateTimestamp}</div>
         </div>
       </div>
