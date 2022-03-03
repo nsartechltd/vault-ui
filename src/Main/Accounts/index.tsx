@@ -4,7 +4,9 @@ import { NavLink } from 'react-router-dom';
 import UserProvider from '../../Components/Cards/UserProvider';
 import config from '../../config';
 
-const { vaultApi: { apiUrl: vaultApiUrl } } = config;
+const {
+  vaultApi: { apiUrl: vaultApiUrl },
+} = config;
 
 type UserProviderType = {
   id: number;
@@ -34,14 +36,14 @@ class Accounts extends Component<Props, State> {
     super(props);
 
     this.state = {
-      providers: []
+      providers: [],
     };
   }
 
   async componentDidMount() {
     const { userId } = this.props;
     const response = await fetch(`${vaultApiUrl}/user/${userId}/providers`);
-    const body = await response.json() as State;
+    const body = (await response.json()) as State;
 
     this.setState({ providers: body.providers });
   }
@@ -55,20 +57,28 @@ class Accounts extends Component<Props, State> {
 
         <br />
 
-          <NavLink to='/accounts/add'>
-            <input type='button' className='d-flex justify-content-end btn btn-primary' value="Add Bank Account" />
-          </NavLink>
+        <NavLink to="/accounts/add">
+          <input
+            type="button"
+            className="d-flex justify-content-end btn btn-primary"
+            value="Add Bank Account"
+          />
+        </NavLink>
 
         <br />
 
-        <div className='row'>
-          {providers.map((provider: UserProviderType, index: number) =>
-            <div key={index} className='col'>
-              <UserProvider id={provider.Provider.id} name={provider.Provider.name} logo={provider.Provider.logoUrl}/>
+        <div className="row">
+          {providers.map((provider: UserProviderType, index: number) => (
+            <div key={index} className="col">
+              <UserProvider
+                id={provider.Provider.id}
+                name={provider.Provider.name}
+                logo={provider.Provider.logoUrl}
+              />
             </div>
-          )}
+          ))}
         </div>
-    </>
+      </>
     );
   }
 }

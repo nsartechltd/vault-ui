@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const env = process.env.REACT_APP_ENVIRONMENT || 'development';
 
 const config: any = {

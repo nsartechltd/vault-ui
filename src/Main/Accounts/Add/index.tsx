@@ -14,54 +14,48 @@ type State = {
   providers: Provider[];
 };
 
-type Props = {};
-
 const {
-  trueLayer: {
-    apiUrl: trueLayerApiUrl,
-    clientId,
-    redirectUri
-  },
-  vaultApi: {
-    apiUrl: vaultApiUrl
-  }
+  trueLayer: { apiUrl: trueLayerApiUrl, clientId, redirectUri },
+  vaultApi: { apiUrl: vaultApiUrl },
 } = config;
 
-class AddAccounts extends Component<Props, State> {
-  constructor(props: Props) {
+class AddAccounts extends Component<Record<string, unknown>, State> {
+  constructor(props: Record<string, unknown>) {
     super(props);
 
     this.state = {
-      providers: []
+      providers: [],
     };
   }
 
   async componentDidMount() {
     const response = await fetch(`${vaultApiUrl}/providers`);
-    const body = await response.json() as State;
+    const body = (await response.json()) as State;
 
     this.setState({ providers: body.providers });
   }
 
   render() {
     const { providers } = this.state;
-  
+
     return (
       <>
-      <h2>Add Account</h2>
+        <h2>Add Account</h2>
 
-      <br />
+        <br />
 
-      <div className="list-group">
-        {providers.map((provider: Provider, index: number) =>
-          <a
-            key={index}
-            href={`${trueLayerApiUrl}/?response_type=code&client_id=${clientId}&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=${redirectUri}&providers=${provider.provider_id}&disable_providers=uk-ob-all`}
-            className="list-group-item list-group-item-action">{provider.display_name}
-          </a>
-        )}
-      </div>
-    </>
+        <div className="list-group">
+          {providers.map((provider: Provider, index: number) => (
+            <a
+              key={index}
+              href={`${trueLayerApiUrl}/?response_type=code&client_id=${clientId}&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=${redirectUri}&providers=${provider.provider_id}&disable_providers=uk-ob-all`}
+              className="list-group-item list-group-item-action"
+            >
+              {provider.display_name}
+            </a>
+          ))}
+        </div>
+      </>
     );
   }
 }

@@ -3,7 +3,9 @@ import { Navigate } from 'react-router-dom';
 
 import config from '../../config';
 
-const { vaultApi: { apiUrl: vaultApiUrl } } = config;
+const {
+  vaultApi: { apiUrl: vaultApiUrl },
+} = config;
 
 type State = {
   status: string;
@@ -17,7 +19,7 @@ class AuthCallback extends Component<Props, State> {
     super(props);
 
     this.state = {
-      status: 'failure'
+      status: 'failure',
     };
   }
 
@@ -25,7 +27,9 @@ class AuthCallback extends Component<Props, State> {
     const { search } = window.location;
     const code = search.split('=')[1];
 
-    const { status } = await fetch(`${vaultApiUrl}/authCallback?code=${code}&userId=${this.props.userId}`);
+    const { status } = await fetch(
+      `${vaultApiUrl}/authCallback?code=${code}&userId=${this.props.userId}`
+    );
 
     if (status === 204) {
       this.setState({ status: 'success' });
@@ -35,7 +39,11 @@ class AuthCallback extends Component<Props, State> {
   render() {
     const { status } = this.state;
 
-    return status === 'success' ? <Navigate to='/accounts' replace={true} /> : <p>Failed to add account.</p>;
+    return status === 'success' ? (
+      <Navigate to="/accounts" replace={true} />
+    ) : (
+      <p>Failed to add account.</p>
+    );
   }
 }
 
