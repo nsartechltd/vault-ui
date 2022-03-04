@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { MouseEventHandler } from 'react';
 import { NavLink } from 'react-router-dom';
 
 type Props = {
-  user: unknown;
+  user: any;
   signOut: MouseEventHandler<HTMLButtonElement>;
 };
 
