@@ -68,7 +68,7 @@ class Account extends Component<Props, State> {
           <p className="card-text">Current: {current}</p>
           <p className="card-text">Overdraft: {overdraft}</p>
           <Link
-            to={`/accounts/view/${trueLayerProviderId}/transactions`}
+            to={`/accounts/view/${trueLayerProviderId}/transactions/${accountId}`}
             state={{ providerId, accountId }}
             className="card-link"
           >

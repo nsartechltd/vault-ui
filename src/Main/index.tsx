@@ -64,11 +64,11 @@ class Main extends Component {
                   />
                   <Route path="/accounts/add" element={<AddAccounts />} />
                   <Route
-                    path="/accounts/view"
+                    path="/accounts/view/:providerId"
                     element={<ViewAccounts userId={user.username} />}
                   />
                   <Route
-                    path="/accounts/view/:providerId/transactions"
+                    path="/accounts/view/:providerId/transactions/:accountId"
                     element={<AccountTransactions userId={user.username} />}
                   />
                   <Route
