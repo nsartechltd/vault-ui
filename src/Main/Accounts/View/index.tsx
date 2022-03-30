@@ -70,22 +70,18 @@ class ViewAccounts extends Component<Props, State> {
     const { accounts } = this.state;
     const { userId, router } = this.props;
 
-    return (
-      <>
-        {accounts.map((account, index) => (
-          <AccountCard
-            key={index}
-            displayName={account.display_name}
-            accountType={account.account_type}
-            updateTimestamp={account.update_timestamp}
-            accountId={account.account_id}
-            userId={userId}
-            providerId={router?.location.state.providerId}
-            trueLayerProviderId={account.provider.provider_id}
-          />
-        ))}
-      </>
-    );
+    return accounts.map((account, index) => (
+      <AccountCard
+        key={index}
+        displayName={account.display_name}
+        accountType={account.account_type}
+        updateTimestamp={account.update_timestamp}
+        accountId={account.account_id}
+        userId={userId}
+        providerId={router?.location.state.providerId}
+        trueLayerProviderId={account.provider.provider_id}
+      />
+    ));
   }
 }
 

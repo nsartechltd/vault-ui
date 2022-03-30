@@ -44,12 +44,11 @@ class AddAccounts extends Component<Record<string, unknown>, State> {
 
         <br />
 
-        <div className="list-group">
+        <div>
           {providers.map((provider: Provider, index: number) => (
             <a
               key={index}
               href={`${trueLayerApiUrl}/?response_type=code&client_id=${clientId}&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=${redirectUri}&providers=${provider.provider_id}&disable_providers=uk-ob-all`}
-              className="list-group-item list-group-item-action"
             >
               {provider.display_name}
             </a>

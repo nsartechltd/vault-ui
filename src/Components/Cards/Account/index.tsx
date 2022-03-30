@@ -59,24 +59,21 @@ class Account extends Component<Props, State> {
     const { currency, available, current, overdraft } = this.state;
 
     return (
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">{displayName}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">{accountType}</h6>
-          <p className="card-text">Currency: {currency}</p>
-          <p className="card-text">Available: {available}</p>
-          <p className="card-text">Current: {current}</p>
-          <p className="card-text">Overdraft: {overdraft}</p>
-          <Link
-            to={`/accounts/view/${trueLayerProviderId}/transactions/${accountId}`}
-            state={{ providerId, accountId }}
-            className="card-link"
-          >
-            Transactions
-          </Link>
+      <div>
+        <h5>{displayName}</h5>
+        <h6>{accountType}</h6>
+        <p>Currency: {currency}</p>
+        <p>Available: {available}</p>
+        <p>Current: {current}</p>
+        {overdraft ? <p>Overdraft: {overdraft}</p> : null}
+        <Link
+          to={`/accounts/view/${trueLayerProviderId}/transactions/${accountId}`}
+          state={{ providerId, accountId }}
+        >
+          Transactions
+        </Link>
 
-          <div className="card-footer text-muted">{updateTimestamp}</div>
-        </div>
+        <div>{updateTimestamp}</div>
       </div>
     );
   }

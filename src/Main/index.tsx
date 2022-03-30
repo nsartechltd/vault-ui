@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import Accounts from './Accounts';
 import AddAccounts from './Accounts/Add';
@@ -42,8 +44,31 @@ const components = {
   },
 };
 
-class Main extends Component {
+type Props = Record<string, unknown>;
+type State = {
+  toggled: boolean;
+};
+
+class Main extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      toggled: false,
+    };
+
+    this.setToggled = this.setToggled.bind(this);
+  }
+
+  setToggled(value: boolean) {
+    this.setState({
+      toggled: value,
+    });
+  }
+
   render() {
+    const { toggled } = this.state;
+
     return (
       <Authenticator
         components={components}
@@ -52,10 +77,22 @@ class Main extends Component {
       >
         {({ signOut, user }) => (
           <BrowserRouter>
-            <div>
-              <NavBar user={user} signOut={signOut} />
+            <div className={`app${toggled ? ' toggled' : ''}`}>
+              <NavBar
+                user={user}
+                signOut={signOut}
+                toggled={toggled}
+                onToggle={this.setToggled}
+              />
 
-              <div className="content">
+              <div className="main">
+                <div
+                  className="btn-toggle"
+                  onClick={() => this.setToggled(true)}
+                >
+                  <FontAwesomeIcon icon={faBars} />
+                </div>
+
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route

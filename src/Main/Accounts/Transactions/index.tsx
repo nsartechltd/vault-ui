@@ -61,7 +61,7 @@ class AccountTransactions extends Component<Props, State> {
     const { transactions } = this.state;
 
     return (
-      <table className="table table-striped">
+      <table>
         <thead>
           <tr>
             <th scope="col">Transaction ID</th>

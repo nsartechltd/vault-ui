@@ -10,20 +10,12 @@ type Props = {
 
 const UserProvider = ({ id, name, logo }: Props): JSX.Element => {
   return (
-    <div className="card" style={{ width: '18rem' }}>
-      <img
-        src={logo}
-        className="card-img-top"
-        alt={name}
-        height={50}
-        width={50}
-      />
-      <div className="card-body d-flex justify-content-center">
-        <h5 className="card-text">{name}</h5>
-        <Link to={`/accounts/view/${id}`} state={{ providerId: id }}>
-          <input type="button" className="btn btn-primary" value="View" />
-        </Link>
-      </div>
+    <div className="user-provider">
+      <img src={logo} alt={name} />
+      {/* <h2>{name}</h2> */}
+      <Link to={`/accounts/view/${id}`} state={{ providerId: id }}>
+        <button>View</button>
+      </Link>
     </div>
   );
 };

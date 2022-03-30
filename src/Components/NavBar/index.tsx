@@ -1,55 +1,77 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { MouseEventHandler } from 'react';
 import { NavLink } from 'react-router-dom';
+import {
+  ProSidebar,
+  Menu,
+  MenuItem,
+  SidebarContent,
+  SidebarHeader,
+  SidebarFooter,
+  SubMenu,
+} from 'react-pro-sidebar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faGauge,
+  faBuildingColumns,
+  faArrowRightArrowLeft,
+} from '@fortawesome/free-solid-svg-icons';
+
+import Avatar from '../Avatar';
 
 type Props = {
   user: any;
-  signOut: MouseEventHandler<HTMLButtonElement>;
+  signOut: MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
+  toggled: boolean;
+  onToggle: any;
 };
 
 const NavBar = (props: Props) => {
+  const { toggled, onToggle } = props;
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <div className="navbar-brand">
+    <ProSidebar toggled={toggled} breakPoint="md" onToggle={onToggle}>
+      <SidebarHeader>
+        <div className="sidebar-header">
           <NavLink to="/">
-            <img src="/vault-logo.png" alt="Vault" width="110" height="50" />
+            <img
+              src="/vault-logo.png"
+              className="logo"
+              width={110}
+              height={60}
+            />
           </NavLink>
         </div>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <div className="nav-link">
-                <NavLink to="/accounts">Accounts</NavLink>
-              </div>
-            </li>
-          </ul>
-          <div className="d-flex justify-content-center align-items-center justify-content-evenly">
-            <div className="p-2 justify-content-center align-items-center justify-content-evenly">
-              <p className="justify-content-center align-items-center">
-                Hello, {props.user.attributes.name}
-              </p>
-            </div>
-            <div className="p-2">
-              <button className="btn btn-secondary" onClick={props.signOut}>
-                Sign out
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+      </SidebarHeader>
+      <SidebarContent>
+        <Menu iconShape="square">
+          <MenuItem icon={<FontAwesomeIcon icon={faGauge} />}>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </MenuItem>
+          <MenuItem icon={<FontAwesomeIcon icon={faBuildingColumns} />}>
+            <NavLink to="/accounts">Accounts</NavLink>
+          </MenuItem>
+          <MenuItem icon={<FontAwesomeIcon icon={faArrowRightArrowLeft} />}>
+            <NavLink to="/transactions">Transactions</NavLink>
+          </MenuItem>
+        </Menu>
+      </SidebarContent>
+      <SidebarFooter>
+        <Menu iconShape="square">
+          <SubMenu
+            title={props.user.attributes.name}
+            icon={<Avatar size="40" name={props.user.attributes.name} />}
+          >
+            <MenuItem>
+              <NavLink to="/profile">Profile</NavLink>
+            </MenuItem>
+            <MenuItem>
+              <div onClick={props.signOut}>Sign Out</div>
+            </MenuItem>
+          </SubMenu>
+        </Menu>
+      </SidebarFooter>
+    </ProSidebar>
   );
 };
 

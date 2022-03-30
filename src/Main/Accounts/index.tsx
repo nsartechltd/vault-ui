@@ -58,24 +58,19 @@ class Accounts extends Component<Props, State> {
         <br />
 
         <NavLink to="/accounts/add">
-          <input
-            type="button"
-            className="d-flex justify-content-end btn btn-primary"
-            value="Add Bank Account"
-          />
+          <input type="button" value="Add Bank Account" />
         </NavLink>
 
         <br />
 
-        <div className="row">
+        <div className="accounts-container">
           {providers.map((provider: UserProviderType, index: number) => (
-            <div key={index} className="col">
-              <UserProvider
-                id={provider.Provider.id}
-                name={provider.Provider.name}
-                logo={provider.Provider.logoUrl}
-              />
-            </div>
+            <UserProvider
+              key={index}
+              id={provider.Provider.id}
+              name={provider.Provider.name}
+              logo={provider.Provider.logoUrl}
+            />
           ))}
         </div>
       </>
