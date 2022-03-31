@@ -93,6 +93,7 @@ class Main extends Component<Props, State> {
                   <FontAwesomeIcon icon={faBars} />
                 </div>
 
+                {/* <header> */}
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route
@@ -113,6 +114,7 @@ class Main extends Component<Props, State> {
                     element={<AuthCallback userId={user.username} />}
                   />
                 </Routes>
+                {/* </header> */}
               </div>
             </div>
           </BrowserRouter>

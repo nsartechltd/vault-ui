@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import NumberFormat from '../../NumberFormat';
 import config from '../../../config';
 
 const {
@@ -59,21 +60,46 @@ class Account extends Component<Props, State> {
     const { currency, available, current, overdraft } = this.state;
 
     return (
-      <div>
-        <h5>{displayName}</h5>
-        <h6>{accountType}</h6>
-        <p>Currency: {currency}</p>
-        <p>Available: {available}</p>
-        <p>Current: {current}</p>
-        {overdraft ? <p>Overdraft: {overdraft}</p> : null}
-        <Link
-          to={`/accounts/view/${trueLayerProviderId}/transactions/${accountId}`}
-          state={{ providerId, accountId }}
-        >
-          Transactions
-        </Link>
+      <div className="account-card">
+        <div className="ac-main">
+          <header>
+            <h5>{displayName}</h5>
+            <h6>{accountType}</h6>
+          </header>
 
-        <div>{updateTimestamp}</div>
+          <div className="ac-middle">
+            <div>
+              <p>
+                Current: <NumberFormat value={current} currency={currency} />
+              </p>
+              <p>
+                Available:{' '}
+                <NumberFormat value={available} currency={currency} />
+              </p>
+              <p>
+                Overdraft:{' '}
+                {overdraft ? (
+                  <NumberFormat value={overdraft} currency={currency} />
+                ) : (
+                  'N/A'
+                )}
+              </p>
+            </div>
+
+            <div>
+              <Link
+                to={`/accounts/view/${trueLayerProviderId}/transactions/${accountId}`}
+                state={{ providerId, accountId }}
+              >
+                <button>Transactions</button>
+              </Link>
+            </div>
+          </div>
+
+          <footer>
+            Last Updated: {new Date(updateTimestamp).toLocaleDateString()}
+          </footer>
+        </div>
       </div>
     );
   }

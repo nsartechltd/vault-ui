@@ -6,7 +6,7 @@ type Props = {
   size: string;
 };
 
-const AvatarComponent = (props: Props) => {
+const AvatarComponent = (props: Props): JSX.Element => {
   return <Avatar color="#808080" size={props.size} name={props.name} />;
 };
 

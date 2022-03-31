@@ -12,9 +12,9 @@ import {
 } from 'react-pro-sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faGauge,
+  // faGauge,
   faBuildingColumns,
-  faArrowRightArrowLeft,
+  // faArrowRightArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Avatar from '../Avatar';
@@ -45,15 +45,15 @@ const NavBar = (props: Props) => {
       </SidebarHeader>
       <SidebarContent>
         <Menu iconShape="square">
-          <MenuItem icon={<FontAwesomeIcon icon={faGauge} />}>
+          {/* <MenuItem icon={<FontAwesomeIcon icon={faGauge} />}>
             <NavLink to="/dashboard">Dashboard</NavLink>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem icon={<FontAwesomeIcon icon={faBuildingColumns} />}>
             <NavLink to="/accounts">Accounts</NavLink>
           </MenuItem>
-          <MenuItem icon={<FontAwesomeIcon icon={faArrowRightArrowLeft} />}>
+          {/* <MenuItem icon={<FontAwesomeIcon icon={faArrowRightArrowLeft} />}>
             <NavLink to="/transactions">Transactions</NavLink>
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </SidebarContent>
       <SidebarFooter>
@@ -62,9 +62,9 @@ const NavBar = (props: Props) => {
             title={props.user.attributes.name}
             icon={<Avatar size="40" name={props.user.attributes.name} />}
           >
-            <MenuItem>
+            {/* <MenuItem>
               <NavLink to="/profile">Profile</NavLink>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem>
               <div onClick={props.signOut}>Sign Out</div>
             </MenuItem>

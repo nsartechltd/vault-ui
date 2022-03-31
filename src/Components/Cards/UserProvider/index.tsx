@@ -5,17 +5,21 @@ type Props = {
   id: number;
   name: string;
   logo: string;
-  userId?: string;
+  createdAt: string;
 };
 
-const UserProvider = ({ id, name, logo }: Props): JSX.Element => {
+const UserProvider = ({ id, name, logo, createdAt }: Props): JSX.Element => {
   return (
     <div className="user-provider">
       <img src={logo} alt={name} />
-      {/* <h2>{name}</h2> */}
-      <Link to={`/accounts/view/${id}`} state={{ providerId: id }}>
+      <Link
+        to={`/accounts/view/${id}`}
+        state={{ providerId: id, providerName: name }}
+      >
         <button>View</button>
       </Link>
+
+      <footer>Added: {new Date(createdAt).toLocaleDateString()}</footer>
     </div>
   );
 };

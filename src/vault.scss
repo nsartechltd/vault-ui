@@ -1,13 +1,20 @@
-$sidebar-bg-color: #0073C7;
+$sidebar-bg-color: #0073c7;
 $sidebar-color: #ffffff;
 $icon-bg-color: #808080;
 $icon-size: 50px;
 $submenu-bg-color: #808080;
 
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import '~react-pro-sidebar/dist/scss/styles.scss';
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import "~react-pro-sidebar/dist/scss/styles.scss";
 
-html, #root, .container, .row {
+* {
+  font-family: "Roboto";
+}
+
+html,
+#root,
+.container,
+.row {
   height: 100%;
   width: 100%;
 }
@@ -41,7 +48,6 @@ body {
     justify-content: center;
     font-size: 15px;
     display: none;
-    position: absolute;
   }
 
   .main {
@@ -51,14 +57,83 @@ body {
     flex-direction: column;
     overflow-y: auto;
     background-color: #f0f0f0;
+
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #efefef;
+    }
   }
 
-  .accounts-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: 100%;
+  .accounts-page {
+    .accounts-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100%;
+      padding-top: 50px;
+
+      .user-provider {
+        background-color: white;
+        padding: 10px;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          height: 100px;
+          width: 100px;
+        }
+
+        footer {
+          padding: 100px 0 0 0;
+          color: #808080;
+        }
+      }
+    }
+  }
+
+  .accounts-view-page {
+    .accounts-view-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100%;
+      padding-top: 50px;
+
+      .account-card {
+        background-color: white;
+        padding: 10px;
+        width: 350px;
+        height: 350px;
+
+        .ac-main {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .ac-middle {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-evenly;
+          }
+
+          footer {
+            font-size: 12px;
+            color: #808080;
+            padding-top: 35px;
+          }
+        }
+      }
+    }
   }
 
   .sidebar-header {
@@ -67,41 +142,46 @@ body {
     justify-content: center;
   }
 
-  .user-provider {
-    background-color: white;
-    box-shadow: 5px;
-    padding: 10px;
-    width: 250px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      height: 100px;
-      width: 100px;
-    }
-  }
-  
   @media (max-width: 767.98px) {
     overflow-x: hidden;
 
-    .accounts-container {
-      flex-direction: column;
+    .accounts-page {
+      padding-top: 20px;
+
+      .accounts-container {
+        flex-direction: column;
+        justify-content: space-around;
+        padding-top: 10px;
+
+        .user-provider {
+          width: 100%;
+          height: 150px;
+          flex-direction: row;
+          justify-content: space-around;
+
+          footer {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+        }
+      }
     }
 
-    .user-provider {
-      width: 100%;
-      height: 150px;
-      flex-direction: row;
-      justify-content: space-around;
+    .accounts-view-page {
+      padding-top: 20px;
+
+      .accounts-view-container {
+        padding-top: 10px;
+      }
     }
   }
 
   @media (max-width: $breakpoint-md) {
     .btn-toggle {
       display: flex;
+      position: fixed;
     }
   }
 }

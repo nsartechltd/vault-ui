@@ -10,6 +10,7 @@ const {
 
 type UserProviderType = {
   id: number;
+  createdAt: string;
   UserId: number;
   ProviderId: number;
   Provider: {
@@ -52,16 +53,12 @@ class Accounts extends Component<Props, State> {
     const { providers } = this.state;
 
     return (
-      <>
+      <div className="accounts-page">
         <h2>Your Accounts</h2>
 
-        <br />
-
-        <NavLink to="/accounts/add">
+        <NavLink to="/accounts/add" className="add-account-btn">
           <input type="button" value="Add Bank Account" />
         </NavLink>
-
-        <br />
 
         <div className="accounts-container">
           {providers.map((provider: UserProviderType, index: number) => (
@@ -70,10 +67,11 @@ class Accounts extends Component<Props, State> {
               id={provider.Provider.id}
               name={provider.Provider.name}
               logo={provider.Provider.logoUrl}
+              createdAt={provider.createdAt}
             />
           ))}
         </div>
-      </>
+      </div>
     );
   }
 }

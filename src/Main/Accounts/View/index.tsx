@@ -12,6 +12,7 @@ type Router = {
   location: {
     state: {
       providerId: number;
+      providerName: string;
     };
   };
 };
@@ -39,7 +40,6 @@ type Account = {
 };
 
 type State = {
-  id: number | null;
   accounts: Account[];
 };
 
@@ -48,7 +48,6 @@ class ViewAccounts extends Component<Props, State> {
     super(props);
 
     this.state = {
-      id: null,
       accounts: [],
     };
   }
@@ -69,19 +68,28 @@ class ViewAccounts extends Component<Props, State> {
   render() {
     const { accounts } = this.state;
     const { userId, router } = this.props;
+    const providerName = router?.location.state.providerName;
 
-    return accounts.map((account, index) => (
-      <AccountCard
-        key={index}
-        displayName={account.display_name}
-        accountType={account.account_type}
-        updateTimestamp={account.update_timestamp}
-        accountId={account.account_id}
-        userId={userId}
-        providerId={router?.location.state.providerId}
-        trueLayerProviderId={account.provider.provider_id}
-      />
-    ));
+    return (
+      <div className="accounts-view-page">
+        <h2>Your {providerName} Accounts</h2>
+
+        <div className="accounts-view-container">
+          {accounts.map((account, index) => (
+            <AccountCard
+              key={index}
+              displayName={account.display_name}
+              accountType={account.account_type}
+              updateTimestamp={account.update_timestamp}
+              accountId={account.account_id}
+              userId={userId}
+              providerId={router?.location.state.providerId}
+              trueLayerProviderId={account.provider.provider_id}
+            />
+          ))}
+        </div>
+      </div>
+    );
   }
 }
 
