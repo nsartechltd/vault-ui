@@ -10,7 +10,12 @@ const {
 
 type Props = {
   displayName: string;
-  accountType: string;
+  accountDetails: {
+    iban: string;
+    swift_bic: string;
+    number: string;
+    sort_code: string;
+  };
   updateTimestamp: string;
   accountId: string;
   userId?: string;
@@ -51,7 +56,7 @@ class Account extends Component<Props, State> {
   render() {
     const {
       displayName,
-      accountType,
+      accountDetails,
       updateTimestamp,
       providerId,
       accountId,
@@ -63,8 +68,9 @@ class Account extends Component<Props, State> {
       <div className="account-card">
         <div className="ac-main">
           <header>
-            <h5>{displayName}</h5>
-            <h6>{accountType}</h6>
+            <h4>{displayName}</h4>
+            <h5 className='acc-num'>Account Number: {accountDetails.number}</h5>
+            <h5 className='sort-code'>Sort Code: {accountDetails.sort_code}</h5>
           </header>
 
           <div className="ac-middle">

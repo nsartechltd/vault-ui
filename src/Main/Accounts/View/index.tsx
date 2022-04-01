@@ -79,7 +79,7 @@ class ViewAccounts extends Component<Props, State> {
             <AccountCard
               key={index}
               displayName={account.display_name}
-              accountType={account.account_type}
+              accountDetails={account.account_number}
               updateTimestamp={account.update_timestamp}
               accountId={account.account_id}
               userId={userId}
