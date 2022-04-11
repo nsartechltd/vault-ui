@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import AuthenticateProvider from '../../../Components/Cards/AuthenticateProvider';
 import config from '../../../config';
 
 type Provider = {
@@ -39,22 +40,22 @@ class AddAccounts extends Component<Record<string, unknown>, State> {
     const { providers } = this.state;
 
     return (
-      <>
-        <h2>Add Account</h2>
+      <div className="add-provider-page">
+        <h2>Add Provider</h2>
 
         <br />
 
-        <div>
+        <div className="add-provider-container">
           {providers.map((provider: Provider, index: number) => (
-            <a
+            <AuthenticateProvider
               key={index}
-              href={`${trueLayerApiUrl}/?response_type=code&client_id=${clientId}&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=${redirectUri}&providers=${provider.provider_id}&disable_providers=uk-ob-all`}
-            >
-              {provider.display_name}
-            </a>
+              trueLayerId={provider.provider_id}
+              title={provider.display_name}
+              logoUrl={provider.logo_url}
+            />
           ))}
         </div>
-      </>
+      </div>
     );
   }
 }

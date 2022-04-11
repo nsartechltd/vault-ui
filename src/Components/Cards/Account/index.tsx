@@ -69,8 +69,8 @@ class Account extends Component<Props, State> {
         <div className="ac-main">
           <header>
             <h4>{displayName}</h4>
-            <h5 className='acc-num'>Account Number: {accountDetails.number}</h5>
-            <h5 className='sort-code'>Sort Code: {accountDetails.sort_code}</h5>
+            <h5 className="acc-num">Account Number: {accountDetails.number}</h5>
+            <h5 className="sort-code">Sort Code: {accountDetails.sort_code}</h5>
           </header>
 
           <div className="ac-middle">

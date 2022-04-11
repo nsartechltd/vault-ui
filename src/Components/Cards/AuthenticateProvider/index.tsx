@@ -1,18 +1,34 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+
+import config from '../../../config';
 
 type Props = {
   trueLayerId: string;
   title: string;
+  logoUrl: string;
 };
 
-const AuthenticateProvider = ({ trueLayerId, title }: Props): JSX.Element => {
+const {
+  trueLayer: { apiUrl: trueLayerApiUrl, clientId, redirectUri },
+} = config;
+
+const AuthenticateProvider = ({
+  trueLayerId,
+  title,
+  logoUrl,
+}: Props): JSX.Element => {
   return (
-    <div>
-      <h1>{title}</h1>
+    <div className="provider-card">
+      <img src={logoUrl} alt={title} />
+      <h3>{title}</h3>
       <a
-        href={`https://auth.truelayer.com/?response_type=code&client_id=nsartechltd12466063-d20ff0&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=http://localhost:3000/api/trueLayer/redirect&providers=${trueLayerId}&disable_providers=uk-ob-all`}
+        href={`${trueLayerApiUrl}/?response_type=code&client_id=${clientId}&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=${redirectUri}&providers=${trueLayerId}&disable_providers=uk-ob-all`}
       >
-        <input type="button" value="Authenticate Provider" />
+        <span>
+          <FontAwesomeIcon icon={faCirclePlus} size="lg" />
+        </span>
       </a>
     </div>
   );

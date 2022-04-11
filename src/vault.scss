@@ -147,6 +147,31 @@ body {
     }
   }
 
+  .add-provider-page {
+    .add-provider-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100%;
+
+      .provider-card {
+        background-color: white;
+        padding: 10px;
+        width: 950px;
+        height: 100px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        img {
+            height: 100px;
+            width: 100px;
+          }
+      }
+    }
+  }
+
   .sidebar-header {
     padding: 10px;
     display: flex;
@@ -185,6 +210,18 @@ body {
 
       .accounts-view-container {
         padding-top: 10px;
+      }
+    }
+
+    .add-provider-page {
+      padding-top: 20px;
+
+      .add-provider-container {
+        padding-top: 10px;
+
+        .provider-card {
+          height: 100px;
+        }
       }
     }
   }
