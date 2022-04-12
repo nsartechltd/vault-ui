@@ -16,7 +16,6 @@ type State = {
 };
 
 const {
-  trueLayer: { apiUrl: trueLayerApiUrl, clientId, redirectUri },
   vaultApi: { apiUrl: vaultApiUrl },
 } = config;
 

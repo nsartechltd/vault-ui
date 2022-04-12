@@ -10,7 +10,7 @@ import AddAccounts from './Accounts/Add';
 import ViewAccounts from './Accounts/View';
 import AccountTransactions from './Accounts/Transactions';
 import AuthCallback from './AuthCallback';
-import Home from './Home';
+import Dashboard from './Dashboard';
 import NavBar from '../Components/NavBar';
 import config from '../config';
 
@@ -93,9 +93,8 @@ class Main extends Component<Props, State> {
                   <FontAwesomeIcon icon={faBars} />
                 </div>
 
-                {/* <header> */}
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<Dashboard />} />
                   <Route
                     path="/accounts"
                     element={<Accounts userId={user.username} />}
@@ -114,7 +113,6 @@ class Main extends Component<Props, State> {
                     element={<AuthCallback userId={user.username} />}
                   />
                 </Routes>
-                {/* </header> */}
               </div>
             </div>
           </BrowserRouter>

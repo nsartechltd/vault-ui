@@ -12,7 +12,7 @@ import {
 } from 'react-pro-sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  // faGauge,
+  faGauge,
   faBuildingColumns,
   // faArrowRightArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
@@ -45,9 +45,9 @@ const NavBar = (props: Props) => {
       </SidebarHeader>
       <SidebarContent>
         <Menu iconShape="square">
-          {/* <MenuItem icon={<FontAwesomeIcon icon={faGauge} />}>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          </MenuItem> */}
+          <MenuItem icon={<FontAwesomeIcon icon={faGauge} />}>
+            <NavLink to="/">Dashboard</NavLink>
+          </MenuItem>
           <MenuItem icon={<FontAwesomeIcon icon={faBuildingColumns} />}>
             <NavLink to="/accounts">Accounts</NavLink>
           </MenuItem>
