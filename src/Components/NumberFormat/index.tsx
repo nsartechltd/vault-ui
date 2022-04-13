@@ -17,6 +17,7 @@ const NumberFormatComponent = (props: Props): JSX.Element => {
       displayType="text"
       prefix={currency}
       decimalScale={2}
+      fixedDecimalScale={true}
     />
   );
 };

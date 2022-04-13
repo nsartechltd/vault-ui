@@ -82,6 +82,7 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 5px;
 
         img {
           height: 100px;
@@ -103,13 +104,13 @@ body {
       flex-wrap: wrap;
       justify-content: space-around;
       height: 100%;
-      padding-top: 50px;
 
       .account-card {
         background-color: white;
         padding: 10px;
         width: 350px;
         height: 350px;
+        margin: 5px;
 
         .ac-main {
           width: 100%;
@@ -163,11 +164,37 @@ body {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        margin: 5px;
 
         img {
             height: 100px;
             width: 100px;
           }
+      }
+    }
+  }
+
+  .transactions-page {
+    .transactions-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100%;
+
+      .transaction-card {
+        background-color: white;
+        padding: 10px;
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 5px;
+
+        .trans-desc-trim {
+          display: none;
+        }
       }
     }
   }
@@ -218,6 +245,22 @@ body {
 
       .add-provider-container {
         padding-top: 10px;
+      }
+    }
+
+    .transactions-page {
+      padding-top: 20px;
+
+      .transactions-container {
+        .transaction-card {
+          .trans-desc-full {
+            display: none;
+          }
+
+          .trans-desc-trim {
+            display: contents;
+          }
+        }
       }
     }
 

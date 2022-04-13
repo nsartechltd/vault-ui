@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Transaction from '../../../Components/Cards/Transactions';
 import WithRouter from '../../../Components/WithRouter';
 import config from '../../../config';
 
@@ -23,6 +24,7 @@ type Transaction = {
   currency: string;
   amount: number;
   timestamp: string;
+  transaction_classification: string[];
 };
 
 type Props = {
@@ -61,30 +63,23 @@ class AccountTransactions extends Component<Props, State> {
     const { transactions } = this.state;
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Transaction ID</th>
-            <th scope="col">Merchant</th>
-            <th scope="col">Description</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Timestamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((t: Transaction, index: number) => (
-            <tr key={index}>
-              <th scope="row">{t.transaction_id}</th>
-              <td>{t.merchant_name}</td>
-              <td>{t.description}</td>
-              <td>
-                {t.currency} {t.amount}
-              </td>
-              <td>{t.timestamp}</td>
-            </tr>
+      <div className="transactions-page">
+        <h2>Transactions</h2>
+
+        <br />
+
+        <div className="transactions-container">
+          {transactions.map((transaction: Transaction, index: number) => (
+            <Transaction
+              key={index}
+              timestamp={transaction.timestamp}
+              description={transaction.description}
+              amount={transaction.amount}
+              currency={transaction.currency}
+            />
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     );
   }
 }

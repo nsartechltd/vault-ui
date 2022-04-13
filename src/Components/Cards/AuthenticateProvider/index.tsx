@@ -27,7 +27,7 @@ const AuthenticateProvider = ({
         href={`${trueLayerApiUrl}/?response_type=code&client_id=${clientId}&scope=info%20accounts%20balance%20cards%20transactions%20direct_debits%20standing_orders%20offline_access&redirect_uri=${redirectUri}&providers=${trueLayerId}&disable_providers=uk-ob-all`}
       >
         <span>
-          <FontAwesomeIcon icon={faCirclePlus} size="lg" />
+          <FontAwesomeIcon icon={faCirclePlus} size="2x" />
         </span>
       </a>
     </div>
