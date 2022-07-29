@@ -11,17 +11,10 @@ const {
 type UserProviderType = {
   id: number;
   createdAt: string;
+  name: string;
   UserId: number;
-  ProviderId: number;
-  Provider: {
-    id: number;
-    name: string;
-    providerId: string;
-    country: string;
-    logoUrl: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+  providerId: string;
+  logoUrl: string;
 };
 
 type State = {
@@ -64,9 +57,9 @@ class Accounts extends Component<Props, State> {
           {providers.map((provider: UserProviderType, index: number) => (
             <UserProvider
               key={index}
-              id={provider.Provider.id}
-              name={provider.Provider.name}
-              logo={provider.Provider.logoUrl}
+              providerId={provider.providerId}
+              name={provider.name}
+              logo={provider.logoUrl}
               createdAt={provider.createdAt}
             />
           ))}

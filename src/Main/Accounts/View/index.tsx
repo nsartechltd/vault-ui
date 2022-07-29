@@ -22,21 +22,46 @@ type Props = {
   router?: Router | undefined;
 };
 
+/**
+ * {
+      "id": 1,
+      "type": "account",
+      "accountId": "56c7b029e0f8ec5a2334fb0ffc2fface",
+      "createdAt": "2022-07-29T19:30:47.000Z",
+      "updatedAt": "2022-07-29T19:30:47.000Z",
+      "TokenId": 2,
+      "Account": {
+        "id": 1,
+        "type": "TRANSACTION",
+        "name": "TRANSACTION ACCOUNT 1",
+        "currency": "GBP",
+        "accountNumber": "10000000",
+        "sortCode": "01-21-31",
+        "iban": "GB08CLRB04066800003435",
+        "createdAt": "2022-07-29T19:30:47.000Z",
+        "updatedAt": "2022-07-29T19:30:47.000Z",
+        "assetId": 1,
+        "AssetId": 1
+      }
+    }
+ */
+
 type Account = {
-  update_timestamp: string;
-  account_id: string;
-  account_type: string;
-  display_name: string;
-  currency: string;
-  account_number: {
+  id: number;
+  type: 'account' | 'card';
+  accountId: string;
+  createdAt: string;
+  updatedAt: string;
+  Account: {
+    type: string;
+    name: string;
+    currency: string;
+    accountNumber: string;
+    sortCode: string;
     iban: string;
-    number: string;
-    sort_code: string;
-    swift_bic: string;
-  };
-  provider: {
-    provider_id: string;
-  };
+    createdAt: string;
+    updatedAt: string;
+  }
 };
 
 type State = {
@@ -75,16 +100,16 @@ class ViewAccounts extends Component<Props, State> {
         <h2>Your {providerName} Accounts</h2>
 
         <div className="accounts-view-container">
-          {accounts.map((account, index) => (
+          {accounts.map(({ accountId, Account: account }, index) => (
             <AccountCard
               key={index}
-              displayName={account.display_name}
-              accountDetails={account.account_number}
-              updateTimestamp={account.update_timestamp}
-              accountId={account.account_id}
+              displayName={account.name}
+              accountDetails={{ iban: account.iban, number: account.accountNumber, sort_code: account.sortCode, swift_bic:  }}
+              updateTimestamp={account.updatedAt}
+              accountId={accountId}
               userId={userId}
               providerId={router?.location.state.providerId}
-              trueLayerProviderId={account.provider.provider_id}
+              // trueLayerProviderId={account.provider.provider_id}
             />
           ))}
         </div>

@@ -11,6 +11,10 @@ type Provider = {
   scopes: string[];
 };
 
+type Props = {
+  userId?: string;
+}
+
 type State = {
   providers: Provider[];
 };
@@ -19,8 +23,8 @@ const {
   vaultApi: { apiUrl: vaultApiUrl },
 } = config;
 
-class AddAccounts extends Component<Record<string, unknown>, State> {
-  constructor(props: Record<string, unknown>) {
+class AddAccounts extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -37,6 +41,7 @@ class AddAccounts extends Component<Record<string, unknown>, State> {
 
   render() {
     const { providers } = this.state;
+    const { userId } = this.props;
 
     return (
       <div className="add-provider-page">
@@ -51,6 +56,7 @@ class AddAccounts extends Component<Record<string, unknown>, State> {
               trueLayerId={provider.provider_id}
               title={provider.display_name}
               logoUrl={provider.logo_url}
+              userId={userId}
             />
           ))}
         </div>

@@ -99,7 +99,7 @@ class Main extends Component<Props, State> {
                     path="/accounts"
                     element={<Accounts userId={user.username} />}
                   />
-                  <Route path="/accounts/add" element={<AddAccounts />} />
+                  <Route path="/accounts/add" element={<AddAccounts userId={user.username}/>} />
                   <Route
                     path="/accounts/view/:providerId"
                     element={<ViewAccounts userId={user.username} />}
