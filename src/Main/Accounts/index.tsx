@@ -13,7 +13,7 @@ type UserProviderType = {
   createdAt: string;
   name: string;
   UserId: number;
-  providerId: string;
+  trueLayerId: string;
   logoUrl: string;
 };
 
@@ -57,7 +57,7 @@ class Accounts extends Component<Props, State> {
           {providers.map((provider: UserProviderType, index: number) => (
             <UserProvider
               key={index}
-              providerId={provider.providerId}
+              trueLayerId={provider.trueLayerId}
               name={provider.name}
               logo={provider.logoUrl}
               createdAt={provider.createdAt}

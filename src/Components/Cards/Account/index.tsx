@@ -19,8 +19,7 @@ type Props = {
   updateTimestamp: string;
   accountId: string;
   userId?: string;
-  providerId?: number;
-  trueLayerProviderId: string;
+  trueLayerId: string;
 };
 
 type State = {
@@ -43,10 +42,11 @@ class Account extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const { accountId, userId, providerId } = this.props;
+    const { accountId, userId, trueLayerId } = this.props;
+    console.log(this.props)
 
     const response = await fetch(
-      `${vaultApiUrl}/user/${userId}/provider/${providerId}/account/${accountId}/balance`
+      `${vaultApiUrl}/user/${userId}/provider/${trueLayerId}/account/${accountId}/balance`
     );
     const body = await response.json();
 
@@ -58,9 +58,8 @@ class Account extends Component<Props, State> {
       displayName,
       accountDetails,
       updateTimestamp,
-      providerId,
       accountId,
-      trueLayerProviderId,
+      trueLayerId,
     } = this.props;
     const { currency, available, current, overdraft } = this.state;
 
@@ -94,8 +93,8 @@ class Account extends Component<Props, State> {
 
             <div>
               <Link
-                to={`/accounts/view/${trueLayerProviderId}/transactions/${accountId}`}
-                state={{ providerId, accountId }}
+                to={`/accounts/view/${trueLayerId}/transactions/${accountId}`}
+                state={{ trueLayerId, accountId }}
               >
                 <button>Transactions</button>
               </Link>

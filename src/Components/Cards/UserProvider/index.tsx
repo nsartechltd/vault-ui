@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 type Props = {
-  providerId: string;
+  trueLayerId: string;
   name: string;
   logo: string;
   createdAt: string;
 };
 
-const UserProvider = ({ providerId, name, logo, createdAt }: Props): JSX.Element => {
+const UserProvider = ({ trueLayerId, name, logo, createdAt }: Props): JSX.Element => {
   return (
     <div className="user-provider">
       <img src={logo} alt={name} />
       <Link
-        to={`/accounts/view/${providerId}`}
-        state={{ providerId, providerName: name }}
+        to={`/accounts/view/${trueLayerId}`}
+        state={{ trueLayerId, providerName: name }}
       >
         <button>View</button>
       </Link>

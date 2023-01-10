@@ -19,7 +19,7 @@ class AuthCallback extends Component<Props, State> {
     super(props);
 
     this.state = {
-      status: 'failure',
+      status: 'pending',
     };
   }
 
@@ -34,15 +34,24 @@ class AuthCallback extends Component<Props, State> {
     if (status === 204) {
       this.setState({ status: 'success' });
     }
+    else {
+      this.setState({ status: 'failure' })
+    }
   }
 
   render() {
     const { status } = this.state;
 
-    return status === 'success' ? (
+    if (status === 'failure') {
+      return (<p>Failed to add account.</p>);
+    }
+
+    if (status === 'pending') {
+      return (<p>Loading...</p>);
+    }
+
+    return (
       <Navigate to="/accounts" replace={true} />
-    ) : (
-      <p>Failed to add account.</p>
     );
   }
 }

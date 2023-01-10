@@ -11,7 +11,7 @@ const {
 type Router = {
   location: {
     state: {
-      providerId: number;
+      trueLayerId: number;
       providerName: string;
     };
   };
@@ -22,36 +22,14 @@ type Props = {
   router?: Router | undefined;
 };
 
-/**
- * {
-      "id": 1,
-      "type": "account",
-      "accountId": "56c7b029e0f8ec5a2334fb0ffc2fface",
-      "createdAt": "2022-07-29T19:30:47.000Z",
-      "updatedAt": "2022-07-29T19:30:47.000Z",
-      "TokenId": 2,
-      "Account": {
-        "id": 1,
-        "type": "TRANSACTION",
-        "name": "TRANSACTION ACCOUNT 1",
-        "currency": "GBP",
-        "accountNumber": "10000000",
-        "sortCode": "01-21-31",
-        "iban": "GB08CLRB04066800003435",
-        "createdAt": "2022-07-29T19:30:47.000Z",
-        "updatedAt": "2022-07-29T19:30:47.000Z",
-        "assetId": 1,
-        "AssetId": 1
-      }
-    }
- */
-
 type Account = {
   id: number;
   type: 'account' | 'card';
   accountId: string;
   createdAt: string;
   updatedAt: string;
+  trueLayerId: string;
+  ProviderId: number;
   Account: {
     type: string;
     name: string;
@@ -59,6 +37,7 @@ type Account = {
     accountNumber: string;
     sortCode: string;
     iban: string;
+    bic: string;
     createdAt: string;
     updatedAt: string;
   }
@@ -80,10 +59,10 @@ class ViewAccounts extends Component<Props, State> {
   async componentDidMount() {
     const { userId, router } = this.props;
 
-    const providerId = router?.location.state.providerId;
+    const trueLayerId = router?.location.state.trueLayerId;
 
     const response = await fetch(
-      `${vaultApiUrl}/user/${userId}/provider/${providerId}/accounts`
+      `${vaultApiUrl}/user/${userId}/provider/${trueLayerId}/accounts`
     );
     const body = await response.json();
 
@@ -95,21 +74,22 @@ class ViewAccounts extends Component<Props, State> {
     const { userId, router } = this.props;
     const providerName = router?.location.state.providerName;
 
+    console.log("ACCOUNTS: ", accounts)
+
     return (
       <div className="accounts-view-page">
         <h2>Your {providerName} Accounts</h2>
 
         <div className="accounts-view-container">
-          {accounts.map(({ accountId, Account: account }, index) => (
+          {accounts.map(({ trueLayerId, accountId, Account: account }, index) => (
             <AccountCard
               key={index}
               displayName={account.name}
-              accountDetails={{ iban: account.iban, number: account.accountNumber, sort_code: account.sortCode, swift_bic:  }}
+              accountDetails={{ iban: account.iban, number: account.accountNumber, sort_code: account.sortCode, swift_bic: account.bic }}
               updateTimestamp={account.updatedAt}
               accountId={accountId}
               userId={userId}
-              providerId={router?.location.state.providerId}
-              // trueLayerProviderId={account.provider.provider_id}
+              trueLayerId={trueLayerId}
             />
           ))}
         </div>
